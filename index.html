@@ -1,28 +1,314 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Static Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prelim Examination Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            transition: opacity 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        main {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            width: 100%;
+        }
+
+        .hero {
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+            animation: slideDown 0.8s ease-out;
+        }
+
+        .hero p {
+            font-size: 20px;
+            opacity: 0.95;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: #667eea;
+            margin-bottom: 12px;
+            font-size: 22px;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .card-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s;
+        }
+
+        .card-btn:hover {
+            opacity: 0.9;
+        }
+
+        .about-section {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .about-section h2 {
+            color: #667eea;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .about-section p {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background: #f8f9ff;
+            border-radius: 8px;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .feature-item::before {
+            content: "✓";
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            header .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin-left: 15px;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <header>
+        <div class="container">
+            <div class="logo">📚 Prelim Exam Portal</div>
+            <nav>
+                <a href="#examination">Examination</a>
+                <a href="#resources">Resources</a>
+                <a href="#support">Support</a>
+            </nav>
+        </div>
+    </header>
 
-    <h1>My Personal Website</h1>
+    <main>
+        <section class="hero">
+            <h1>Preliminary Examination Platform</h1>
+            <p>Prepare, Practice, and Succeed with Confidence</p>
+        </section>
 
-    <h2>About Me</h2>
-    <p>
-        Hello! My name is Your Name. I am an Information Technology
-        student interested in technology and programming.
-    </p>
+        <section class="cards-container" id="examination">
+            <div class="card">
+                <div class="card-icon">📋</div>
+                <h3>Take Exam</h3>
+                <p>Access your preliminary examination with a carefully crafted question set. Time-managed and properly tracked.</p>
+                <a href="#" class="card-btn">Start Exam</a>
+            </div>
 
-    <h2>My Skills</h2>
-    <ul>
-        <li>HTML</li>
-        <li>CSS</li>
-        <li>Programming</li>
-    </ul>
+            <div class="card">
+                <div class="card-icon">📊</div>
+                <h3>View Results</h3>
+                <p>Check your exam results, detailed analytics, and performance metrics to identify areas of improvement.</p>
+                <a href="#" class="card-btn">See Results</a>
+            </div>
 
-    <h2>Contact</h2>
-    <p>Email: your@email.com</p>
+            <div class="card">
+                <div class="card-icon">📖</div>
+                <h3>Study Materials</h3>
+                <p>Access comprehensive study materials, lecture notes, and recommended resources for exam preparation.</p>
+                <a href="#" class="card-btn">Study Now</a>
+            </div>
 
+            <div class="card">
+                <div class="card-icon">💬</div>
+                <h3>Get Help</h3>
+                <p>Connect with instructors and peers. Ask questions and get clarification on exam topics and concepts.</p>
+                <a href="#" class="card-btn">Ask Question</a>
+            </div>
+        </section>
+
+        <section class="about-section" id="resources">
+            <h2>About This Examination</h2>
+            <p>
+                Welcome to the Preliminary Examination Portal! This platform is designed to provide a comprehensive 
+                and engaging examination experience. Our system combines modern technology with educational best practices 
+                to ensure fair assessment and meaningful learning outcomes.
+            </p>
+            <p>
+                Whether you're preparing for your prelim or reviewing your performance, we've got everything you need 
+                to succeed. Our platform offers real-time feedback, detailed performance analytics, and comprehensive 
+                learning resources to support your academic journey.
+            </p>
+
+            <h3 style="color: #667eea; margin-top: 30px; margin-bottom: 15px;">Key Features</h3>
+            <div class="features-list">
+                <div class="feature-item">Timed Examinations</div>
+                <div class="feature-item">Instant Feedback</div>
+                <div class="feature-item">Performance Analytics</div>
+                <div class="feature-item">Study Resources</div>
+                <div class="feature-item">Practice Tests</div>
+                <div class="feature-item">24/7 Access</div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="support">
+        <p>&copy; 2024 Preliminary Examination Portal | Designed for Academic Excellence</p>
+        <p>For technical support, contact: <strong>support@prelim-exam.edu</strong></p>
+    </footer>
 </body>
 </html>
